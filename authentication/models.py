@@ -102,6 +102,7 @@ class User(AbstractBaseUser, PermissionsMixin, models.Model):
     role = models.ForeignKey(
         Role,
         on_delete=models.SET_NULL,
+        null=True,
         default='user'
     )
 
