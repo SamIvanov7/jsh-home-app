@@ -18,7 +18,18 @@ DEVELOPMENT_MODE = os.getenv("DEVELOPEMENT_MODE", "FALSE") == "True"
 
 # Application definition
 
-INSTALLED_APPS = [
+# Application definition
+PROJECT_APPS = [
+    "authentication",
+    "prices",
+    "config",
+    "invoices",
+    "elektriker_kalender",
+    "vertrieb_interface",
+]
+
+
+DJANGO_APPS = [
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
@@ -26,6 +37,25 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
 ]
+
+SERVICE_APPS = [
+    "rest_framework",
+    "rest_framework.authtoken",
+    "widget_tweaks",
+    "schema_graph",
+    "crispy_forms",
+    "shared",
+
+]
+
+INSTALLED_APPS = DJANGO_APPS + PROJECT_APPS + SERVICE_APPS
+
+SIMPLE_JWT = {
+    "AUTH_TOKEN_CLASSES": ("rest_framework_simplejwt.tokens.AccessToken",),
+    "TOKEN_SERIALIZER_CLASS": "accounts.jwt_utils.CustomTokenObtainPairSerializer",
+}
+
+AUTH_USER_MODEL = "authentication.User"
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
@@ -57,6 +87,13 @@ TEMPLATES = [
 
 WSGI_APPLICATION = "config.wsgi.application"
 
+DEFAULT_EMAIL_DOMAIN = os.getenv("DEFAULT_EMAIL_DOMAIN")
+DEFAULT_USER_CREATION_PASSWORD = os.getenv("DEFAULT_USER_CREATION_PASSWORD")
+DEFAULT_PHONE = os.getenv("DEFAULT_PHONE")
+BASE_URL = os.getenv("BASE_URL")
+BASE_URL_PRIV_KUNDEN = os.getenv("BASE_URL_PRIV_KUNDEN")
+REFRESH_URL = os.getenv("REFRESH_URL")
+ACCESS_TOKEN_URL = os.getenv("ACCESS_TOKEN_URL")
 ZOHO_ACCESS_TOKEN = os.getenv("ZOHO_ACCESS_TOKEN")
 ZOHO_CLIENT_ID = os.getenv("ZOHO_CLIENT_ID")
 ZOHO_CLIENT_SECRET = os.getenv("ZOHO_CLIENT_SECRET")
