@@ -1,9 +1,8 @@
-import datetime
-from django.db import models
-from django.contrib.auth import get_user_model
-from shared.models import TimeStampMixin
+from django import forms
+from django.core.exceptions import ValidationError
+from .models import ElectricCalendar, Position, PVAKlein1
 
-position_choices = [
+POSITION_CHOICES = [
     ("Hauptleitungsabzweigklemmen 35mm", "Hauptleitungsabzweigklemmen 35mm"),
     ("Kabelschellen Metall", "Kabelschellen Metall"),
     ("Kabelkanal 10x60mm", "Kabelkanal 10x60mm"),
@@ -116,75 +115,119 @@ position_choices = [
     ("Aufputz-Abzweigdosen", "Aufputz-Abzweigdosen"),
 ]
 
-User = get_user_model()
+
+class ElectricCalendarForm(forms.ModelForm):
+    class Meta:
+        model = ElectricCalendar
+        fields = [
+            "calendar_id",
+            "zoho_id",
+            "user",
+            "anschluss_PVA",
+            "elektriker_calfield",
+            "kundenname",
+            "pva_klein1_calfield",
+            "privatkunde_adresse_pva",
+            "besonderheiten",
+            "elektriktermin_am",
+            "kundenname_rawdata",
+            "termin_best_tigt",
+        ]
+        widgets = {
+            "anschluss_PVA": forms.TextInput(attrs={"class": "form-control"}),
+            "kundenname": forms.TextInput(attrs={"class": "form-control"}),
+            "privatkunde_adresse_pva": forms.TextInput(attrs={"class": "form-control"}),
+            "besonderheiten": forms.Textarea(attrs={"class": "form-control"}),
+            "elektriktermin_am": forms.DateTimeInput(attrs={"class": "form-control"}),
+            "kundenname_rawdata": forms.TextInput(attrs={"class": "form-control"}),
+            "termin_best_tigt": forms.TextInput(attrs={"class": "form-control"}),
+        }
+
+    def clean(self):
+        cleaned_data = super().clean()
+
+        # place for custom validations here
+
+        return cleaned_data
 
 
-class ElectricCalendar(TimeStampMixin):
-    calendar_id = models.CharField(
-        max_length=255, primary_key=True, unique=True, default=None
-    )
-    zoho_id = models.CharField(max_length=20, default="")
-    current_date = models.DateField(auto_now_add=True)
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
-    is_locked = models.BooleanField(default=False)
+class PositionForm(forms.ModelForm):
+    class Meta:
+        model = Position
+        fields = ["position", "quantity"]
+        widgets = {
+            "position": forms.Select(
+                choices=POSITION_CHOICES, attrs={"class": "form-control"}
+            ),
+            "quantity": forms.NumberInput(attrs={"class": "form-control"}),
+        }
 
-    anschluss_PVA = models.CharField(max_length=50, null=True, blank=True)
-    elektriker_calfield = models.BigIntegerField(null=True, blank=True)
-    kundenname = models.CharField(max_length=255, null=True, blank=True)
-    pva_klein1_calfield = models.BigIntegerField(null=True, blank=True)
-    privatkunde_adresse_pva = models.CharField(max_length=255, null=True, blank=True)
-    besonderheiten = models.TextField(default="Besonderheiten", null=True, blank=True)
-    elektriktermin_am = models.DateTimeField(null=True, blank=True)
-    kundenname_rawdata = models.CharField(max_length=255, null=True, blank=True)
-    termin_best_tigt = models.CharField(max_length=2, null=True, blank=True)
+    def clean(self):
+        cleaned_data = super().clean()
 
-    def save(self, *args, **kwargs):
-        if not self.pk:
-            self.calendar_id = self.generate_calendar_id()
-            self.is_locked = False
+        # place for custom validations here
 
-        super().save(*args, **kwargs)
-
-    def __str__(self) -> str:
-        return f"CalendarID: {self.calendar_id}"
-
-    def generate_calendar_id(self):
-        user = User.objects.get(id=self.user.pk)
-        kurz = user.kuerzel  # type: ignore
-        current_datetime = datetime.datetime.now()
-        return f"CAL-{kurz}-{current_datetime.strftime('%d%m%Y-%H%M%S')}"
+        return cleaned_data
 
 
-class Position(TimeStampMixin):
-    position = models.CharField(
-        max_length=100, choices=position_choices, blank=True, null=True
-    )
-    quantity = models.FloatField(null=True, blank=True)
-    calendar = models.ForeignKey(
-        "ElectricCalendar",
-        on_delete=models.CASCADE,
-        related_name="positions",
-        default=ElectricCalendar,
-    )
+class PVAKlein1Form(forms.ModelForm):
+    class Meta:
+        model = PVAKlein1
+        fields = ["display_value", "calendar"]
+        widgets = {
+            "display_value": forms.TextInput(attrs={"class": "form-control"}),
+            
+        }
 
-    def delete(self, *args, **kwargs):
-        super().delete(*args, **kwargs)
+    def clean(self):
+        cleaned_data = super().clean()
 
-    def save(self, *args, **kwargs):
-        return super().save(*args, **kwargs)
+        # place for custom validations here
 
-    def __str__(self) -> str:
-        return f"{self.position}, Menge : {self.quantity}"
+        return cleaned_data
 
 
-class PVAKlein1(models.Model):
-    display_value = models.CharField(max_length=255)
-    pva_id = models.CharField(max_length=20)
-    calendar = models.ForeignKey(
-        "ElectricCalendar",
-        on_delete=models.CASCADE,
-        related_name="pva_kleins1",
-    )
+# class KundenDataForm(forms.ModelForm):
+#     class Meta:
+#         model = KundenData
+#         fields = [
+#             "kunden_name",
+#             "kunden_strasse",
+#             "kunden_plz_ort",
+#             "standort",
+#             "calendar",
+#         ]
 
-    def __str__(self):
-        return self.display_value
+#     def __init__(self, *args, **kwargs):
+#         super().__init__(*args, **kwargs)
+#         self.fields["kunden_name"].widget = forms.TextInput(
+#             attrs={"placeholder": "Enter Kunden Name", "class": "form-control"}
+#         )
+#         self.fields["kunden_strasse"].widget = forms.TextInput(
+#             attrs={"placeholder": "Enter Kunden Strasse", "class": "form-control"}
+#         )
+#         self.fields["kunden_plz_ort"].widget = forms.TextInput(
+#             attrs={"placeholder": "Enter Kunden PLZ Ort", "class": "form-control"}
+#         )
+#         self.fields["standort"].widget = forms.TextInput(
+#             attrs={"placeholder": "Enter Standort", "class": "form-control"}
+#         )
+#         self.fields["calendar"].widget = forms.Select(attrs={"class": "form-control"})
+
+
+# class PositionForm(forms.ModelForm):
+
+
+# position = forms.ChoiceField(choices=POSITION_CHOICES)
+
+# class Meta:
+#     model = Position
+#     fields = ["position", "quantity", "kunde"]
+
+# def __init__(self, *args, **kwargs):
+#     super().__init__(*args, **kwargs)
+#     self.fields["position"].widget = forms.Select(attrs={"class": "form-control"})
+#     self.fields["quantity"].widget = forms.NumberInput(
+#         attrs={"placeholder": "Enter Quantity", "class": "form-control"}
+#     )
+#     self.fields["kunde"].widget = forms.Select(attrs={"class": "form-control"})
