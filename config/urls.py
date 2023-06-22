@@ -2,7 +2,7 @@ from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import include, path, re_path
-from invoices.views import handler403, handler404, handler500
+# from invoices.views import handler403, handler404, handler500
 from authentication.views import (
     update_vertrieblers,
     update_elektrikers,
@@ -37,9 +37,9 @@ urlpatterns = (
 )
 
 # Error handlers
-if settings.DEBUG:
-    urlpatterns += [
-        re_path(r"^403/$", handler403),
-        re_path(r"^404/$", handler404),
-        re_path(r"^500/$", handler500),
-    ]
+# if settings.DEBUG:
+#     urlpatterns += [
+#         re_path(r"^403/$", handler403),
+#         re_path(r"^404/$", handler404),
+#         re_path(r"^500/$", handler500),
+#     ]
