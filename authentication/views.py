@@ -1,11 +1,15 @@
 from django.core.management import call_command
 from django.contrib.admin.views.decorators import staff_member_required
-
+from django.http import HttpResponseNotAllowed
 from django.http import StreamingHttpResponse
+from django.contrib.admin.views.decorators import staff_member_required
+from schema_graph.views import Schema
 
 
 @staff_member_required
 def update_vertrieblers(request):
+    if request.method != 'POST':
+        return HttpResponseNotAllowed(['POST'])
     def stream_response():
         yield "Starting user update\n"
 
@@ -21,10 +25,6 @@ def update_vertrieblers(request):
     response["Cache-Control"] = "no-cache"
 
     return response
-
-
-from django.contrib.admin.views.decorators import staff_member_required
-from schema_graph.views import Schema
 
 
 @staff_member_required

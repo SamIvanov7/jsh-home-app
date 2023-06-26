@@ -13,12 +13,12 @@ urlpatterns = (
     [   
         path("admin/", admin.site.urls),
         path(
-            "admin/update_vertrieblers/",
+            "update_vertrieblers/",
             update_vertrieblers,
             name="update_vertrieblers",
         ),
         path(
-            "admin/update_elektrikers/", update_elektrikers, name="update_elektrikers"
+            "update_elektrikers/", update_elektrikers, name="update_elektrikers"
         ),
         path("admin/schema/", protected_schema_view, name="schema_view"),
         

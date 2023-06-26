@@ -152,7 +152,7 @@ class VertriebAngebot(TimeStampMixin):
         ("sehr komplex", "sehr komplex"),
     )
 
-    anrede = models.CharField(choices=ANREDE_CHOICES, blank=True)
+    anrede = models.CharField(choices=ANREDE_CHOICES, blank=True, max_length=20)
     name = models.CharField(max_length=100, blank=True)
     firma = models.CharField(max_length=100, blank=True)
     strasse = models.CharField(max_length=100, blank=True)

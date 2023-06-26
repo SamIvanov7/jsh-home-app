@@ -103,7 +103,7 @@ class User(AbstractBaseUser, PermissionsMixin, models.Model):
         Role,
         on_delete=models.SET_NULL,
         null=True,
-        default="user"
+        
     )
 
     created_at = models.DateTimeField(auto_now_add=True)
