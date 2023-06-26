@@ -3,7 +3,7 @@ import os, sys, dj_database_url #type:ignore
 from django.core.management.utils import get_random_secret_key
 from dotenv import find_dotenv, load_dotenv
 ENV_FILE = find_dotenv()
-load_dotenv(ENV_FILE)
+load_dotenv()
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
