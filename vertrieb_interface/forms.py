@@ -207,13 +207,13 @@ class VertriebAngebotForm(ModelForm):
         label="Anrede",
         choices=ANREDE_CHOICES,
         required=True,
-        widget=forms.Select(attrs={"class": "form-select", "id": "id_anrede"}),
+        widget=forms.Select(attrs={"class": "form-select", "id": "id_anrede", "style": "max-width: 100px"}),
     )
     name = forms.ChoiceField(
         choices=[],
         label="Name",
         required=True,
-        widget=forms.Select(attrs={"class": "form-select", "id": "id_name", "style": "max_width: 100px",}),
+        widget=forms.Select(attrs={"class": "form-select", "id": "id_name", "style": "max-width: 100px"}),
     )
     telefon_mobil = forms.CharField(
         label="Telefon Mobil",
@@ -224,6 +224,7 @@ class VertriebAngebotForm(ModelForm):
                 "class": "form-control",
                 "placeholder": "Telefon Mobil",
                 "id": "id_telefon_mobil",
+                "style": "max-width: 100px",
             }
         ),
     )
@@ -236,6 +237,7 @@ class VertriebAngebotForm(ModelForm):
                 "class": "form-control",
                 "placeholder": "Telefon Festnetz",
                 "id": "id_telefon_festnetz",
+                "style": "max-width: 100px",
             }
         ),
     )
