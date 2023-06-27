@@ -656,6 +656,7 @@ class VertriebAngebotForm(ModelForm):
 
         data = json.loads(profile.zoho_data_text or "[(), ()]")  # type: ignore
         name_list = [(item["name"], item["name"]) for item in data]
+        name_list = sorted(name_list, key=lambda x: x[0])
         self.fields["name"].choices = name_list
 
 
