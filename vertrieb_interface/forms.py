@@ -207,13 +207,13 @@ class VertriebAngebotForm(ModelForm):
         label="Anrede",
         choices=ANREDE_CHOICES,
         required=True,
-        widget=forms.Select(attrs={"class": "form-select", "id": "id_anrede", "style": "max-width: 100px"}),
+        widget=forms.Select(attrs={"class": "form-select", "id": "id_anrede", "style": "max-width: 300px"}),
     )
     name = forms.ChoiceField(
         choices=[],
         label="Name",
         required=True,
-        widget=forms.Select(attrs={"class": "form-select", "id": "id_name", "style": "max-width: 100px"}),
+        widget=forms.Select(attrs={"class": "form-select", "id": "id_name", "style": "max-width: 300px"}),
     )
     telefon_mobil = forms.CharField(
         label="Telefon Mobil",
@@ -224,7 +224,7 @@ class VertriebAngebotForm(ModelForm):
                 "class": "form-control",
                 "placeholder": "Telefon Mobil",
                 "id": "id_telefon_mobil",
-                "style": "max-width: 100px",
+                "style": "max-width: 300px",
             }
         ),
     )
@@ -237,7 +237,7 @@ class VertriebAngebotForm(ModelForm):
                 "class": "form-control",
                 "placeholder": "Telefon Festnetz",
                 "id": "id_telefon_festnetz",
-                "style": "max-width: 100px",
+                "style": "max-width: 300px",
             }
         ),
     )
@@ -246,7 +246,7 @@ class VertriebAngebotForm(ModelForm):
         max_length=100,
         required=False,
         widget=forms.TextInput(
-            attrs={"class": "form-control", "placeholder": "Firma", "id": "firma"}
+            attrs={"class": "form-control", "placeholder": "Firma", "id": "firma", "style": "max-width: 300px",}
         ),
     )
     strasse = forms.CharField(
@@ -258,6 +258,7 @@ class VertriebAngebotForm(ModelForm):
                 "class": "form-control",
                 "placeholder": "Straße & Hausnummer",
                 "id": "id_strasse",
+                "style": "max-width: 300px",
             }
         ),
     )
@@ -266,7 +267,7 @@ class VertriebAngebotForm(ModelForm):
         max_length=100,
         required=True,
         widget=forms.TextInput(
-            attrs={"class": "form-control", "placeholder": "PLZ & Ort", "id": "id_ort"}
+            attrs={"class": "form-control", "placeholder": "PLZ & Ort", "id": "id_ort", "style": "max-width: 300px",}
         ),
     )
     anlagenstandort = forms.CharField(
@@ -278,6 +279,7 @@ class VertriebAngebotForm(ModelForm):
                 "class": "form-control",
                 "placeholder": "Anlagenstandort",
                 "id": "anlagenstandort",
+                "style": "max-width: 300px",
             }
         ),
     )
@@ -292,6 +294,7 @@ class VertriebAngebotForm(ModelForm):
                 "class": "form-control",
                 "placeholder": "Stromverbrauch/Jahr [kWh]",
                 "id": "id_verbrauch",
+                
             }
         ),  # include your new validator here
     )
@@ -376,7 +379,8 @@ class VertriebAngebotForm(ModelForm):
             attrs={
                 "class": "form-control",
                 "placeholder": "Anzahl (kann sein 0 und <=6 )",
-                "id": "anz_speicher",
+                "id": "anz_speicher", 
+                "style": "max-width: 100px"
             }
         ),
     )
@@ -384,14 +388,14 @@ class VertriebAngebotForm(ModelForm):
         label="E-Ladestation (Wallbox)",
         required=False,
         widget=forms.CheckboxInput(
-            attrs={"class": "form-check-input", "id": "wallbox"}
+            attrs={"class": "form-check-input", "id": "wallbox", "style": "max-width: 300px"}
         ),
     )
     ausrichtung = forms.ChoiceField(
         label="Ausrichtung PV-Anlage",
         choices=ausrichtung_choices,
         required=True,
-        widget=forms.Select(attrs={"class": "form-select", "id": "ausrichtung"}),
+        widget=forms.Select(attrs={"class": "form-select", "id": "ausrichtung", "style": "max-width: 100px"}),
     )
 
     komplex = forms.ChoiceField(
@@ -399,7 +403,7 @@ class VertriebAngebotForm(ModelForm):
         label="Komlexität",
         choices=komplex_choices,
         required=True,
-        widget=forms.Select(attrs={"class": "form-select", "id": "komplex"}),
+        widget=forms.Select(attrs={"class": "form-select", "id": "komplex", "style": "max-width: 300px"}),
     )
 
     notizen = forms.CharField(
@@ -408,6 +412,7 @@ class VertriebAngebotForm(ModelForm):
                 "rows": 4,
                 "class": "form-control",
                 "style": "height: 100px",
+                "style": "max-width: 300px",
                 "id": "notizen",
             }
         )
@@ -432,7 +437,7 @@ class VertriebAngebotForm(ModelForm):
             ("Commander 2 Inkl. Power Boost", "Commander 2 Inkl. Power Boost"),
         ],
         required=False,
-        widget=forms.Select(attrs={"class": "form-select", "id": "wallboxtyp"}),
+        widget=forms.Select(attrs={"class": "form-select", "id": "wallboxtyp", "style": "max-width: 300px",}),
     )
     wallbox_anzahl = forms.IntegerField(
         initial=0,
@@ -445,6 +450,7 @@ class VertriebAngebotForm(ModelForm):
                 "data-toggle": "touchspin",
                 "value": "0",
                 "type": "text",
+                "style": "max-width: 300px",
             }
         ),
     )
@@ -462,6 +468,7 @@ class VertriebAngebotForm(ModelForm):
                 "data-step": "0.1",
                 "data-decimals": "2",
                 "data-bts-postfix": "m",
+                "style": "max-width: 300px",
             }
         ),
     )
