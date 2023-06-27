@@ -213,7 +213,7 @@ class VertriebAngebotForm(ModelForm):
         choices=[],
         label="Name",
         required=True,
-        widget=forms.Select(attrs={"class": "form-select", "id": "id_name"}),
+        widget=forms.Select(attrs={"class": "form-select", "id": "id_name", "style": "max_width: 100px",}),
     )
     telefon_mobil = forms.CharField(
         label="Telefon Mobil",
