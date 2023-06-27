@@ -154,7 +154,7 @@ class VertriebAngebotForm(ModelForm):
     status = forms.ChoiceField(
         label="Angebotstatus",
         choices=ANGEBOT_STATUS_CHOICES,
-        widget=forms.Select(attrs={"class": "form-select", "id": "id_status"}),
+        widget=forms.Select(attrs={"class": "form-select", "id": "id_status", "style": "max-width: 300px"}),
         required=False,
     )
     status_change_date = forms.CharField(
