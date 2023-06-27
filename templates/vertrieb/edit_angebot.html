@@ -113,88 +113,87 @@
                         </li>
                       </ul>
 
-                      <div class="tab-content">
-                        <div class="tab-pane show active" id="info" role="presentation">
-                          
+                        <div class="tab-content">
+                          <div class="tab-pane show active" id="info" role="presentation">
                             <table>
-                              <tr>
-                                <th>{{ form.anrede.label_tag }}</th>
-                                <td> {{ form.anrede }}</td>
-                              </tr>
-                              <tr>
-                                <th>{{ form.name.label_tag }}</th>
-                                <td>{{ form.name }}</td>
-                              </tr>
-                              <tr>
-                                <th>{{ form.telefon_mobil.label_tag }}</th>
-                                <td>{{ form.telefon_mobil }}</td>
-                              </tr>
-                              <tr>
-                                <th>{{ form.telefon_festnetz.label_tag }}</th>
-                                <td>{{ form.telefon_festnetz }}</td>
-                              </tr>
-                              <tr>
-                                <th>{{ form.firma.label_tag }}</th>
-                                <td>{{ form.firma }}</td>
-                              </tr>
-                              <tr>
-                                <th>{{ form.strasse.label_tag }}</th>
-                                <td>{{ form.strasse }}</td>
-                              </tr>
-                              <tr>
-                                <th>{{ form.ort.label_tag }}</th>
-                                <td>{{ form.ort }}</td>
-                              </tr>
-                              <tr>
-                                <th> Addrese mit Google Maps öffnen: </th>
-                                <td>
-                                <a href="{{ vertrieb_angebot.google_maps_url }}">{{ vertrieb_angebot.google_maps_url }}</a> 
-                                </td>
-                              </tr>
-                              <tr>
-                                <th>{{ form.anlagenstandort.label_tag }}</th>
-                                <td>{{ form.anlagenstandort }}</td>
-                              </tr>
-                              
-                              <tr>
-                                <th>{{ form.anz_speicher.label_tag }}</th>
-                                <td>{{ form.anz_speicher }} </td>
-                              </tr>
-                              <tr>
-                                <th>{{ form.wallbox.label_tag }}</th>
-                                <td>
-                                  <div style="display: flex; align-items: center;">{{ form.wallbox }}___ Ja / Nein</div>
-                                </td>
-                              </tr>
-                              <tr>
-                                <th>{{ form.ausrichtung.label_tag }}</th>
-                                <td id="ausrichtung" name="ausrichtung">{{ form.ausrichtung }}</td>
-                              </tr>
-                              <tr>
-                                <th>{{ form.komplex.label_tag }}</th>
-                                <td id="komplex" name="komplex">{{ form.komplex }}</td>
-                              </tr>
-                              <tr>
-                                <th>{{ form.notizen.label_tag }}</th>
-                                <td id="notizen" name="notizen">{{ form.notizen }}</td>
-                              </tr>
-                              <tr>
-                                <th>{{ form.empfohlen_von.label_tag }}</th>
-                                <td>{{ vertrieb_angebot.empfohlen_von }}</td>
-                              </tr>
-                              <tr>
-                                <th>{{ form.angebot_bekommen_am.label_tag }}</th>
-                                <td>{{ vertrieb_angebot.angebot_bekommen_am }}</td>
-                              </tr>
-                            </table>
-                            <table>
-                              <tr>
-                                <th>{{ form.ablehnungs_grund.label_tag }}</th>
-                                <td> {{ form.ablehnungs_grund }} </td>
-                              </tr>
+                              </tbody>
+                                <tr>
+                                  <th>{{ form.anrede.label_tag }}</th>
+                                  <td> {{ form.anrede }}</td>
+                                </tr>
+                                <tr>
+                                  <th>{{ form.name.label_tag }}</th>
+                                  <td>{{ form.name }}</td>
+                                </tr>
+                                <tr>
+                                  <th>{{ form.telefon_mobil.label_tag }}</th>
+                                  <td>{{ form.telefon_mobil }}</td>
+                                </tr>
+                                <tr>
+                                  <th>{{ form.telefon_festnetz.label_tag }}</th>
+                                  <td>{{ form.telefon_festnetz }}</td>
+                                </tr>
+                                <tr>
+                                  <th>{{ form.firma.label_tag }}</th>
+                                  <td>{{ form.firma }}</td>
+                                </tr>
+                                <tr>
+                                  <th>{{ form.strasse.label_tag }}</th>
+                                  <td>{{ form.strasse }}</td>
+                                </tr>
+                                <tr>
+                                  <th>{{ form.ort.label_tag }}</th>
+                                  <td>{{ form.ort }}</td>
+                                </tr>
+                                <tr>
+                                  <th> Addrese mit Google Maps öffnen: </th>
+                                  <td>
+                                  <a href="{{ vertrieb_angebot.google_maps_url }}">{{ vertrieb_angebot.google_maps_url }}</a> 
+                                  </td>
+                                </tr>
+                                <tr>
+                                  <th>{{ form.anlagenstandort.label_tag }}</th>
+                                  <td>{{ form.anlagenstandort }}</td> 
+                                </tr>
+                                
+                                <tr>
+                                  <th>{{ form.anz_speicher.label_tag }}</th>
+                                  <td>{{ form.anz_speicher }} </td>
+                                </tr>
+                                <tr>
+                                  <th>{{ form.wallbox.label_tag }}</th>
+                                  <td>
+                                    <div style="display: flex; align-items: center;">{{ form.wallbox }}___ Ja / Nein</div>
+                                  </td>
+                                </tr>
+                                <tr>
+                                  <th>{{ form.ausrichtung.label_tag }}</th>
+                                  <td id="ausrichtung" name="ausrichtung">{{ form.ausrichtung }}</td>
+                                </tr>
+                                <tr>
+                                  <th>{{ form.komplex.label_tag }}</th>
+                                  <td id="komplex" name="komplex">{{ form.komplex }}</td>
+                                </tr>
+                                <tr>
+                                  <th>{{ form.notizen.label_tag }}</th>
+                                  <td id="notizen" name="notizen">{{ form.notizen }}</td>
+                                </tr>
+                                <tr>
+                                  <th>{{ form.empfohlen_von.label_tag }}</th>
+                                  <td>{{ vertrieb_angebot.empfohlen_von }}</td>
+                                </tr>
+                                <tr>
+                                  <th>{{ form.angebot_bekommen_am.label_tag }}</th>
+                                  <td>{{ vertrieb_angebot.angebot_bekommen_am }}</td>
+                                </tr>
+                                <tr>
+                                  <th>{{ form.ablehnungs_grund.label_tag }}</th>
+                                  <td> {{ form.ablehnungs_grund }} </td>
+                                </tr>
+                              </tbody>
                             </table>
                           
-                        </div>
+                          </div>
                           <div class="tab-pane" id="wallbox" role="presentation">
                             
                               <div class="row">
